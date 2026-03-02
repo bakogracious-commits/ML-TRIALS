@@ -9,12 +9,18 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 import matplotlib.pyplot as plt
 
+# Constants for data generation
+NUM_SAMPLES = 100
+TRUE_SLOPE = 2.5
+TRUE_INTERCEPT = 1.5
+NOISE_SCALE = 2
+
 
 def main():
     # Generate sample data
     np.random.seed(42)
-    X = np.random.rand(100, 1) * 10  # 100 samples, 1 feature
-    y = 2.5 * X.squeeze() + 1.5 + np.random.randn(100) * 2  # Linear relationship with noise
+    X = np.random.rand(NUM_SAMPLES, 1) * 10  # NUM_SAMPLES samples, 1 feature
+    y = TRUE_SLOPE * X.squeeze() + TRUE_INTERCEPT + np.random.randn(NUM_SAMPLES) * NOISE_SCALE  # Linear relationship with noise
     
     # Split data into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(
